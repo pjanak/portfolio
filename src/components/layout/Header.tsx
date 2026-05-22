@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
-  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32)
@@ -12,12 +11,9 @@ export default function Header() {
   }, [])
 
   const items = [
-    { label: 'Work',    to: '/work'    },
     { label: 'CV',      to: '/cv'      },
     { label: 'Contact', to: '/contact' },
   ]
-
-  const isWork = location.pathname.startsWith('/work') || location.pathname.startsWith('/case')
 
   return (
     <nav className={`nav${scrolled ? ' scrolled' : ''}`} aria-label="Primary">
@@ -40,12 +36,7 @@ export default function Header() {
         <ul className="nav-links" role="list">
           {items.map((item) => (
             <li key={item.to} role="listitem">
-              <NavLink
-                to={item.to}
-                className={({ isActive }) =>
-                  (item.to === '/work' ? (isWork ? 'active' : '') : isActive ? 'active' : '')
-                }
-              >
+              <NavLink to={item.to} className={({ isActive }) => isActive ? 'active' : ''}>
                 {item.label}
               </NavLink>
             </li>

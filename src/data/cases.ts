@@ -32,20 +32,18 @@ export const CASES: Case[] = [
     location: 'Remote, UK',
     sector: 'Energy',
     tags: ['Energy', 'CX', 'AI', 'Mobile'],
-    headline: 'Native app growth to 5m+ users, a new loyalty programme, and AI-powered customer engagement.',
-    blurb: 'Leading delivery across customer retention and digital self-serve — native app migration, loyalty proposition, and go-to-market capability building.',
+    headline: 'Native app growth to 5m+ users, and an AI-enabled loyalty programme.',
+    blurb: '3 squads, customer retention and digital self-serve, embedded in go-to-market.',
     figures: [
-      { value: '5m+',    label: 'Active app users' },
-      { value: '3',      label: 'Squads led' },
-      { value: 'AI',     label: 'Loyalty proposition' },
-      { value: '2026',   label: 'Started' }
+      { value: '5m+',  label: 'Active app users' },
+      { value: '3',    label: 'Squads led' },
+      { value: 'AI',   label: 'Loyalty proposition' },
     ],
     sections: [
-      { heading: 'The brief', body: 'Lead delivery across three squads focused on customer retention and digital self-serve — including the native app migration targeting growth to 5m+ active users. Operate embedded within the go-to-market function, bridging internal and external product and technology teams.' },
-      { heading: 'What I\'m doing', body: 'Taking programmes from inception to live across the customer retention domain — maintaining pace and accountability across suppliers and individual contributors. Leading early-stage development of a loyalty programme that combines energy demand-shift incentives with reward schemes, with options being explored to leverage AI for customer engagement and proposition validation.' },
-      { heading: 'Building capability', body: 'Alongside delivery, actively building team agile maturity across the domain — improving how squads plan, prioritise, and deliver. Focus on sustainable cadence, commercial accountability, and cross-team dependency management.' }
+      { heading: 'The brief', body: 'Lead delivery across customer retention and digital self-serve — including the native app migration to 5m+ active users, bridging internal and external teams from inception to live.' },
+      { heading: 'AI loyalty', body: 'Leading early-stage development of a loyalty programme combining energy demand-shift incentives with reward schemes, exploring AI for customer engagement and proposition validation.' },
     ],
-    quote: null
+    quote: null,
   },
   {
     id: 'vmo2',
@@ -55,20 +53,18 @@ export const CASES: Case[] = [
     location: 'London, UK',
     sector: 'Telecoms',
     tags: ['Telecoms', 'SAFe', 'Regulatory', 'Recovery'],
-    headline: 'Recovering a stalled transformation — £8m portfolio, zero customer disruption, 5% conversion uplift.',
-    blurb: 'Brought in to stabilise a complex multi-supplier programme, negotiate the MSA, and deliver critical regulatory commitments on time.',
+    headline: 'Recovering a stalled transformation — £8m portfolio, zero disruption, 5% conversion uplift.',
+    blurb: 'Stabilised a complex multi-supplier programme, negotiated the MSA, delivered three regulatory commitments on time.',
     figures: [
-      { value: '£8m',   label: 'Annual portfolio' },
-      { value: '5%',    label: 'Conversion uplift' },
-      { value: '3',     label: 'Regulatory programmes' },
-      { value: '0',     label: 'Customer disruption' }
+      { value: '£8m', label: 'Annual portfolio' },
+      { value: '5%',  label: 'Conversion uplift' },
+      { value: '3',   label: 'Regulatory programmes' },
     ],
     sections: [
-      { heading: 'The brief', body: 'Brought in to recover a stalled transformation programme at VMO2 — accountable for an £8m annual portfolio while simultaneously delivering critical regulatory commitments (One Touch Switch, Ofcom Price Rise), negotiating a master services agreement, and restoring stakeholder confidence across a highly complex, multi-supplier environment.' },
-      { heading: 'How we ran it', body: 'Stabilised ways of working across UK, near-shore and off-shore teams, then instituted SAFe across five digital squads — raising sprint throughput by 15% and creating a predictable programme cadence. Drove a 5% conversion uplift and got new channel propositions to market across the digital acquisition roadmap.' },
-      { heading: 'Outcome', body: 'The dual-platform migration landed with zero customer disruption. All three regulatory programmes were delivered to their statutory dates. Stakeholder confidence in the delivery operation measurably increased, and the MSA was successfully negotiated to provide a stable commercial foundation.' }
+      { heading: 'The brief', body: 'Brought in to recover a stalled transformation — accountable for an £8m annual portfolio while delivering critical regulatory commitments, negotiating the MSA, and restoring stakeholder confidence.' },
+      { heading: 'Outcome', body: 'Dual-platform migration landed with zero customer disruption. All three regulatory programmes (One Touch Switch, Ofcom Price Rise) delivered to statutory dates. 5% conversion uplift across the digital acquisition roadmap.' },
     ],
-    quote: '"Brought in to recover a stalled programme — left with a clean cutover, three regulatory commitments met, and a restored commercial relationship."'
+    quote: '"Brought in to recover a stalled programme — left with a clean cutover, three regulatory commitments met, and a restored commercial relationship."',
   },
   {
     id: 'river-island',
@@ -78,20 +74,18 @@ export const CASES: Case[] = [
     location: 'London, UK',
     sector: 'Retail / eCommerce',
     tags: ['Retail', 'eCommerce', 'Transformation', 'Data'],
-    headline: 'Building a £32m delivery practice — SAFe at scale, data foundations, and £163m in eCommerce revenue protected.',
-    blurb: '330+ FTEs transitioned to Scaled Agile, proprietary data pipelines built, and a promotions engine deployed across every customer touchpoint.',
+    headline: '£32m portfolio, SAFe at scale, and £163m in eCommerce revenue protected.',
+    blurb: 'MACH-based architecture shift, B2B transformation, 330+ FTEs to Scaled Agile, 100% value traceability linked to strategy.',
     figures: [
       { value: '£32m',  label: 'IT change portfolio' },
       { value: '330+',  label: 'FTEs to SAFe' },
-      { value: '£163m', label: 'eCommerce revenue protected' },
-      { value: '10%',   label: 'Team attrition ↓' }
+      { value: '£163m', label: 'Revenue protected' },
     ],
     sections: [
-      { heading: 'The brief', body: 'Sit on the Technology Leadership Team with direct CapEx sign-off authority. Govern a £32m strategic IT change portfolio aligned to C-level strategy — and rebuild delivery practices from the ground up to match the pace the business needed.' },
-      { heading: 'How we ran it', body: 'Transitioned 330+ people to Scaled Agile with 100% adoption and a 15% performance uplift. Introduced automated governance tooling saving 200+ hours per month, directly managed 18 FTE across the delivery function, and built capability and succession across the practice. Established proprietary data pipelines — single view of customer, inventory, and transactions — laying the foundation for personalisation and customer intelligence at scale.' },
-      { heading: 'Outcome', body: 'Delivered a promotions engine spanning all online and offline customer touchpoints — a foundational capability that unified promotional activity and set the groundwork for a future loyalty proposition. During Covid-19, the prioritised delivery model protected an estimated £163m in eCommerce revenue. Team attrition fell 10%.' }
+      { heading: 'The brief', body: 'Sit on the Technology Leadership Team with direct CapEx sign-off authority — govern a £32m strategic IT portfolio and rebuild delivery practices from the ground up.' },
+      { heading: 'Outcome', body: 'Transitioned 330+ people to Scaled Agile with 100% adoption. Established data pipelines and a promotions engine across all touchpoints. Protected £163m in eCommerce revenue through Covid-19 response. Team attrition fell 10%.' },
     ],
-    quote: '"The transformation made delivery visible — to the board, to the teams, and to the customers we were trying to serve."'
+    quote: '"The transformation made delivery visible — to the board, to the teams, and to the customers we were trying to serve."',
   },
   {
     id: 'reply-ecom',
@@ -101,19 +95,17 @@ export const CASES: Case[] = [
     location: 'London, UK',
     sector: 'Retail / Telecoms / Media',
     tags: ['eCommerce', 'Mobile', 'Loyalty', 'Advisory'],
-    headline: 'Eight years from developer to principal — BBC Bitesize, a CEO CVA advisory, and enterprise loyalty at scale.',
-    blurb: 'Joined as a software developer, progressed to full delivery ownership across major UK brands — VMO2, BBC, Tesco, John Lewis, Monsoon Accessorize, Sky, Vodafone.',
+    headline: 'Eight years, developer to principal — BBC Bitesize, a CEO CVA advisory, loyalty at scale.',
+    blurb: 'VMO2, BBC, Tesco, John Lewis, Berry Bros. & Rudd, Monsoon Accessorize, Sky, Vodafone.',
     figures: [
+      { value: '£6m',   label: 'Annual turnover' },
+      { value: '20%',   label: 'EBITA' },
       { value: '5–10%', label: 'CRO uplift' },
-      { value: '19%',   label: 'Downtime ↓' },
-      { value: '12%',   label: 'CSAT ↑ (omnichannel)' },
-      { value: '6%',    label: 'Marketing ROI ↑' }
     ],
     sections: [
-      { heading: 'The journey', body: 'Joined as a software developer and progressed through technical lead to full design and delivery responsibility for scalable, customer-facing digital solutions across major UK and international consumer brands — spanning web, mobile, kiosk, and ePOS. Notable delivery includes the BBC Bitesize app, which achieved record downloads.' },
-      { heading: 'High-stakes advisory', body: 'Advised the CEO of Monsoon Accessorize during their CVA — identifying tactical interventions to stabilise eCommerce performance and given full authority to execute. A high-stakes engagement requiring commercial judgement, speed, and stakeholder trust. Delivered omnichannel loyalty capability for Monsoon Accessorize and personalisation platforms across multiple brands.' },
-      { heading: 'Outcomes', body: 'Conversion-rate optimisation lifted KPIs 5–10% across multiple brands. Legacy eCommerce stabilisation reduced downtime by 19%. Loyalty and personalisation programmes improved marketing ROI by 6% and customer satisfaction by 12%. Acted as a trusted senior adviser to clients, translating business ambition into actionable roadmaps and scalable technical solutions.' }
+      { heading: 'The journey', body: 'Joined as a software developer, progressed to full delivery ownership across major UK and international brands — web, mobile, kiosk, ePOS. Notable delivery: BBC Bitesize app (record downloads), CEO advisory for Monsoon Accessorize CVA.' },
+      { heading: 'Outcomes', body: '5–10% CRO uplift across multiple brands. 19% reduction in platform downtime. 12% CSAT improvement. 6% marketing ROI uplift. Loyalty and personalisation platforms deployed at scale.' },
     ],
-    quote: null
-  }
+    quote: null,
+  },
 ]

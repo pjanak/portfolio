@@ -24,10 +24,8 @@ const ROLES = [
     location: 'Remote, UK',
     title: 'Agile Delivery Lead',
     bullets: [
-      'Leading delivery across 3 squads on customer retention and digital self-serve — overseeing the native app migration and growth to 5m+ active users alongside broader strategic initiatives.',
-      'Bridging internal and external product and technology teams to take programmes from inception to live, maintaining pace and accountability across suppliers and individual contributors.',
-      'Leading early-stage development of a loyalty programme combining energy demand-shift incentives with reward schemes — with options being explored to leverage AI for customer engagement and proposition validation.',
-      'Embedded within the go-to-market function, with a parallel focus on building team agile maturity — improving how squads plan, prioritise, and deliver.',
+      'Leading delivery across 3 squads on customer retention and digital self-serve — overseeing the native app migration to 5m+ active users and early-stage development of an AI-enabled loyalty programme.',
+      'Bridging internal and external product and technology teams from inception to live, embedded within the go-to-market function.',
     ],
   },
   {
@@ -36,11 +34,8 @@ const ROLES = [
     location: 'London, UK',
     title: 'Senior Manager — Business Unit Manager & Delivery Leader',
     bullets: [
-      'Built and led the digital experience practice at Open Reply — directly managing 14 FTE, accountable for a £4m+ CapEx budget, and positioning the practice as a market leader in AI-native delivery and AI-powered customer experiences.',
-      'Forged strategic partnerships with Google and AWS to build and deliver AI solutions for clients — ahead of peers in the market and underpinning a differentiated proposition around next-generation digital experiences.',
-      'Led the practice as the first UK consultancy to partner with Apple on Vision Pro, developing business-focused spatial computing applications.',
-      'Delivery owner of an AI initiative resulting in hyper-realistic, adaptive digital humans deployed in a live customer-facing environment — improving end-user engagement, driving service upsell, and measurably reducing customer complaints.',
-      'Brought in to recover a stalled transformation at VMO2 — accountable for an £8m annual portfolio, drove 5% conversion uplift, negotiated the MSA, and delivered a zero-disruption dual-platform migration alongside three regulatory programmes.',
+      "Built and led the digital experience practice — 14 FTE, £4m+ CapEx budget, strategic partnerships with Google, AWS and Apple (UK's first Vision Pro consultancy partner), and delivery of adaptive AI digital humans in a live customer environment.",
+      'Recovered a stalled VMO2 transformation: £8m annual portfolio, 5% conversion uplift, zero-disruption dual-platform migration, three regulatory programmes landed on time.',
     ],
   },
   {
@@ -49,12 +44,8 @@ const ROLES = [
     location: 'London, UK',
     title: 'Principal Delivery Manager → Head of Transformation & Delivery Practice',
     bullets: [
-      'Accountable for a £32m IT change portfolio on the Technology Leadership Team — holding direct CapEx sign-off authority and balancing investment priorities across web, mobile, and in-store digital programmes at C-suite level.',
-      'Directly managed 18 FTE across the delivery function, building capability, closing skills gaps, and growing the practice in line with business demand.',
-      'Rebuilt IT delivery practices from the ground up: transitioned 330+ people to Scaled Agile (100% adoption, 15% performance uplift), introduced automated governance tooling saving 200+ hours per month, and protected £163m in eCommerce revenue through rapid Covid-19 response.',
-      'Established proprietary data pipelines — single view of customer, inventory, and transactions — laying the foundation for personalisation and customer intelligence at scale.',
-      'Delivered a promotions engine spanning online and offline channels across all customer touchpoints — a foundational capability that unified promotional activity and set the groundwork for a future loyalty proposition.',
-      'Introduced event-based architecture and a structured capability programme — reducing team attrition by 10%.',
+      'Governed a £32m strategic IT portfolio on the Technology Leadership Team — transitioned 330+ people to Scaled Agile, protected £163m in eCommerce revenue through Covid-19 response, and cut team attrition by 10%.',
+      'Built foundational data capabilities (single view of customer, inventory, transactions) and a promotions engine across all customer touchpoints.',
     ],
   },
   {
@@ -63,10 +54,8 @@ const ROLES = [
     location: 'London, UK',
     title: 'Consultant → Senior Consultant → Principal eCommerce Consultant',
     bullets: [
-      'Joined as a software developer, progressed through technical lead to full design and delivery responsibility for scalable, customer-facing digital solutions across major UK and international consumer brands — spanning web, mobile, kiosk, and ePOS. Notable delivery includes the BBC Bitesize app, which achieved record downloads.',
-      'Advised the CEO of Monsoon Accessorize during their CVA — identifying tactical interventions to stabilise eCommerce performance and given full authority to execute; a high-stakes engagement requiring commercial judgement, speed, and stakeholder trust.',
-      'Delivered omnichannel loyalty capability for Monsoon Accessorize and personalisation platforms across multiple brands — outcomes included 12% improvement in CSAT, 6% uplift in marketing ROI, 19% reduction in platform downtime, and 5–10% conversion gains.',
-      'Acted as a trusted senior adviser to clients — forging long-term partnership models, translating business ambition into actionable roadmaps, and managing cross-functional delivery teams across CX, technical, and business workstreams.',
+      'Progressed from software developer to full delivery ownership across major brands — VMO2, BBC, Tesco, John Lewis, Monsoon Accessorize, Sky. Notable work includes the BBC Bitesize app (record downloads) and advising the CEO of Monsoon Accessorize through their CVA.',
+      'Consistent delivery outcomes: 5–10% conversion uplift, 19% reduction in platform downtime, 12% CSAT improvement, 6% marketing ROI uplift.',
     ],
   },
 ]
