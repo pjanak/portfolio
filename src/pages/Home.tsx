@@ -1,6 +1,8 @@
+import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
-import { CASES } from '@/data/cases'
+import { CASES, type Case } from '@/data/cases'
+import { useReveal } from '@/hooks/useReveal'
 import eonLogo from '@/assets/logos/eon.svg'
 import vmo2Logo from '@/assets/logos/vmo2-dark.svg'
 import riverIslandLogo from '@/assets/logos/river-island-dark.svg'
@@ -13,6 +15,7 @@ const LOGOS: Record<string, string> = {
   'reply-ecom': replyLogo,
 }
 
+/* ─── Eyebrow ─────────────────────────────────────────────────── */
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <p className="eyebrow">
@@ -22,8 +25,94 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   )
 }
 
+/* ─── TimelineItem ────────────────────────────────────────────── */
+/**
+ * Self-contained animated timeline entry.
+ * Observes its own intersection; fades+rises on scroll, with
+ * logo slide-left and bottom-line clip-path reveal on stagger.
+ */
+function TimelineItem({ c }: { c: Case }) {
+  const ref = useRef<HTMLLIElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); io.unobserve(el) } },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <li ref={ref} className={`tl-item ${visible ? 'tl-in' : 'tl-out'}`}>
+      <div className="tl-left">
+        {LOGOS[c.id] && (
+          <img src={LOGOS[c.id]} alt={c.company} className="tl-logo" />
+        )}
+        <span className="tl-dates">{c.dates}</span>
+      </div>
+      <div className="tl-right">
+        <h3 className="tl-company">{c.company}</h3>
+        <p className="tl-role">{c.role}</p>
+        <p className="tl-desc">{c.sections[0].body}</p>
+        <p className="tl-bottom">
+          <span className="tl-arrow" aria-hidden="true">→ </span>
+          {c.figures.map(f => `${f.value} ${f.label}`).join(' · ')}
+        </p>
+      </div>
+    </li>
+  )
+}
+
+/* ─── RevealBlock ─────────────────────────────────────────────── */
+/**
+ * Generic fade-up reveal wrapper — use for headings, prose, pill rows.
+ * Renders a plain div; style via className.
+ */
+function RevealBlock({
+  children,
+  className = '',
+  delay = 0,
+  style,
+  as: Tag = 'div',
+}: {
+  children: React.ReactNode
+  className?: string
+  delay?: number
+  style?: React.CSSProperties
+  as?: keyof JSX.IntrinsicElements
+}) {
+  const { ref, visible } = useReveal({ threshold: 0.15 })
+
+  const combinedStyle: React.CSSProperties = {
+    ...(delay ? ({ '--reveal-delay': `${delay}ms` } as React.CSSProperties) : {}),
+    ...style,
+  }
+
+  // Cast through unknown to avoid the "union too complex" error from dynamic tags
+  const AnyTag = Tag as unknown as React.ElementType
+
+  return (
+    <AnyTag
+      ref={ref}
+      className={`${className} ${visible ? 'reveal-in' : 'reveal-out'}`}
+      style={Object.keys(combinedStyle).length ? combinedStyle : undefined}
+    >
+      {children}
+    </AnyTag>
+  )
+}
+
+/* ─── Home ────────────────────────────────────────────────────── */
 export default function Home() {
   const navigate = useNavigate()
+
+  // Work section heading gets a special cursor-blink class when visible
+  const { ref: workHeadingRef, visible: workHeadingVisible } =
+    useReveal<HTMLHeadingElement>({ threshold: 0.2 })
 
   return (
     <>
@@ -34,7 +123,7 @@ export default function Home() {
 
       <div className="fade-in">
 
-        {/* Hero */}
+        {/* ── Hero ───────────────────────────────────────────── */}
         <section className="hero-simple container" aria-labelledby="hero-title">
           <Eyebrow>Portfolio · 2026</Eyebrow>
           <h1 id="hero-title">
@@ -60,71 +149,63 @@ export default function Home() {
 
         <hr className="divider" aria-hidden="true" />
 
-        {/* Work timeline */}
+        {/* ── Work timeline ──────────────────────────────────── */}
         <section id="work" className="section container" aria-labelledby="work-heading">
           <Eyebrow>Selected work</Eyebrow>
-          <h2 id="work-heading" className="section-h2">
-            Fifteen years,<br />four <span className="em">enterprises</span>.
+          <h2
+            id="work-heading"
+            ref={workHeadingRef}
+            className={`section-h2 ${workHeadingVisible ? 'reveal-in tl-cursor' : 'reveal-out'}`}
+          >
+            Fifteen years,<br />
+            four <span className="em">enterprises</span>.
           </h2>
+
           <ol className="timeline" aria-label="Work history">
             {CASES.map((c) => (
-              <li className="tl-item" key={c.id}>
-                <div className="tl-left">
-                  {LOGOS[c.id] && (
-                    <img
-                      src={LOGOS[c.id]}
-                      alt={c.company}
-                      className="tl-logo"
-                    />
-                  )}
-                  <span className="tl-dates">{c.dates}</span>
-                </div>
-                <div className="tl-right">
-                  <h3 className="tl-company">{c.company}</h3>
-                  <p className="tl-role">{c.role}</p>
-                  <p className="tl-desc">{c.sections[0].body}</p>
-                  <p className="tl-bottom">
-                    <span className="tl-arrow" aria-hidden="true">→ </span>
-                    {c.figures.map(f => `${f.value} ${f.label}`).join(' · ')}
-                  </p>
-                </div>
-              </li>
+              <TimelineItem key={c.id} c={c} />
             ))}
           </ol>
         </section>
 
         <hr className="divider" aria-hidden="true" />
 
-        {/* How I deliver */}
+        {/* ── How I deliver ──────────────────────────────────── */}
         <section className="section container" aria-labelledby="approach-heading">
           <Eyebrow>How I deliver</Eyebrow>
-          <h2 id="approach-heading" className="section-h2">
+          <RevealBlock as="h2" className="section-h2" aria-label="approach-heading">
             The goal is not more change —<br />
             it's better <span className="em">outcomes</span>, faster.
-          </h2>
-          <p className="prose">
+          </RevealBlock>
+          <RevealBlock className="prose" delay={80}>
             I work best when brought in to shape ambiguity — translating board-level aspiration into a prioritised, executable agenda. Equal weight on building the practice as delivering the programme.
-          </p>
+          </RevealBlock>
           <ul className="pillars" aria-label="Delivery pillars">
-            <li><span className="em">Shaping</span> — translating strategic ambition into a clear delivery agenda, with stakeholder buy-in and risk visibility before a line of code is written.</li>
-            <li><span className="em">Execution</span> — clear ownership, adaptive planning, ruthless prioritisation. Less governance theatre, more accountability.</li>
-            <li><span className="em">Value</span> — outcomes over outputs. Embedding change that lasts beyond programme delivery.</li>
+            {[
+              { em: 'Shaping', rest: ' — translating strategic ambition into a clear delivery agenda, with stakeholder buy-in and risk visibility before a line of code is written.' },
+              { em: 'Execution', rest: ' — clear ownership, adaptive planning, ruthless prioritisation. Less governance theatre, more accountability.' },
+              { em: 'Value', rest: ' — outcomes over outputs. Embedding change that lasts beyond programme delivery.' },
+            ].map(({ em, rest }, i) => (
+              <RevealBlock key={em} as="li" delay={i * 60}>
+                <span className="em">{em}</span>{rest}
+              </RevealBlock>
+            ))}
           </ul>
         </section>
 
         <hr className="divider" aria-hidden="true" />
 
-        {/* Outside the brief */}
+        {/* ── Outside the brief ──────────────────────────────── */}
         <section className="section-tight container" aria-labelledby="personal-heading">
           <Eyebrow>Outside the brief</Eyebrow>
-          <p id="personal-heading" className="prose" style={{ marginBottom: 0 }}>
+          <RevealBlock as="p" className="prose" style={{ marginBottom: 0 }}>
             Based in London. Interested in the intersection of AI, behaviour change and product design. Keen runner, occasional golfer, and genuinely excited about energy demand-shifting. Ask me why most agile transformations fail — I have thoughts.
-          </p>
+          </RevealBlock>
         </section>
 
         <hr className="divider" aria-hidden="true" />
 
-        {/* CTA */}
+        {/* ── CTA ────────────────────────────────────────────── */}
         <section className="section-tight container" style={{ paddingBottom: 64 }} aria-labelledby="cta-heading">
           <h2 id="cta-heading" className="cta-h">
             Delivering for E.ON Next,<br />

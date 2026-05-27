@@ -616,6 +616,68 @@
   }
   .fade-in { animation: fade-up 420ms var(--ease-out); }
 
+  /* ── Scroll-reveal base states ──────────────────────────────── */
+  /* Hidden states are always applied so elements start invisible */
+  .tl-out  { opacity: 0; transform: translateY(28px); }
+  .reveal-out { opacity: 0; transform: translateY(16px); }
+
+  /* ── Scroll-reveal animations (motion enabled) ──────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+
+    @keyframes tl-rise {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes tl-logo-in {
+      from { opacity: 0; transform: translateX(-12px); }
+      to   { opacity: 0.9; transform: translateX(0); }
+    }
+    @keyframes tl-callout-in {
+      from { opacity: 0; clip-path: inset(0 100% 0 0); }
+      to   { opacity: 1; clip-path: inset(0 0% 0 0); }
+    }
+    @keyframes reveal-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes cursor-blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* Timeline item — whole row rises in */
+    .tl-in {
+      animation: tl-rise 540ms var(--ease-out) both;
+    }
+    /* Logo slides in from the left, slightly delayed */
+    .tl-in .tl-logo {
+      animation: tl-logo-in 380ms var(--ease-out) 110ms both;
+    }
+    /* Figures line clips in from the left, most delayed */
+    .tl-in .tl-bottom {
+      animation: tl-callout-in 520ms var(--ease-out) 260ms both;
+    }
+
+    /* Generic reveal wrapper */
+    .reveal-in {
+      animation: reveal-up 440ms var(--ease-out) var(--reveal-delay, 0ms) both;
+    }
+
+    /* Cursor blink on work section heading — fires once then stops */
+    .tl-cursor::after {
+      content: '_';
+      color: var(--accent);
+      margin-left: 2px;
+      animation: cursor-blink 450ms step-end 5 forwards;
+      animation-delay: 350ms;
+    }
+  }
+
+  /* ── Reduced-motion fallback — snap to visible immediately ──── */
+  @media (prefers-reduced-motion: reduce) {
+    .tl-out, .reveal-out { opacity: 1; transform: none; }
+  }
+
   /* Responsive layout helpers — used by page components */
   .case-grid-2col {
     display: grid;
