@@ -1,6 +1,17 @@
 import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
 import { CASES } from '@/data/cases'
+import eonLogo from '@/assets/logos/eon.svg'
+import vmo2Logo from '@/assets/logos/vmo2-dark.svg'
+import riverIslandLogo from '@/assets/logos/river-island-dark.svg'
+import replyLogo from '@/assets/logos/reply-dark.svg'
+
+const LOGOS: Record<string, string> = {
+  eon: eonLogo,
+  vmo2: vmo2Logo,
+  'river-island': riverIslandLogo,
+  'reply-ecom': replyLogo,
+}
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -60,6 +71,14 @@ export default function Home() {
               <li className="tl-item" key={c.id}>
                 <span className="tl-dates">{c.dates}</span>
                 <div>
+                  {LOGOS[c.id] && (
+                    <img
+                      src={LOGOS[c.id]}
+                      alt=""
+                      aria-hidden="true"
+                      className="tl-logo"
+                    />
+                  )}
                   <h3 className="tl-company">{c.company}</h3>
                   <p className="tl-role">{c.role}</p>
                   <p className="tl-desc">{c.sections[0].body}</p>
