@@ -69,16 +69,17 @@ export default function Home() {
           <ol className="timeline" aria-label="Work history">
             {CASES.map((c) => (
               <li className="tl-item" key={c.id}>
-                <span className="tl-dates">{c.dates}</span>
-                <div>
+                <div className="tl-left">
                   {LOGOS[c.id] && (
                     <img
                       src={LOGOS[c.id]}
-                      alt=""
-                      aria-hidden="true"
+                      alt={c.company}
                       className="tl-logo"
                     />
                   )}
+                  <span className="tl-dates">{c.dates}</span>
+                </div>
+                <div className="tl-right">
                   <h3 className="tl-company">{c.company}</h3>
                   <p className="tl-role">{c.role}</p>
                   <p className="tl-desc">{c.sections[0].body}</p>
