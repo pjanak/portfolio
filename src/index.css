@@ -540,6 +540,10 @@
     text-transform: uppercase;
     margin: 0 0 20px;
   }
+  .tl-employer {
+    color: var(--fg-2);
+    font-weight: 600;
+  }
   .tl-desc {
     font-family: var(--font-mono);
     font-size: 14px;

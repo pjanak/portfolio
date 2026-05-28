@@ -56,7 +56,11 @@ function TimelineItem({ c }: { c: Case }) {
       </div>
       <div className="tl-right">
         <h3 className="tl-company">{c.company}</h3>
-        <p className="tl-role">{c.role}</p>
+        <p className="tl-role">
+          {c.employer
+            ? <><span className="tl-employer">{c.employer}</span> · {c.role}</>
+            : c.role}
+        </p>
         <p className="tl-desc">{c.sections[0].body}</p>
         <p className="tl-bottom">
           <span className="tl-arrow" aria-hidden="true">→ </span>

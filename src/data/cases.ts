@@ -12,6 +12,7 @@ export interface Case {
   id: string
   company: string
   role: string
+  employer?: string
   dates: string
   location: string
   sector: string
@@ -48,7 +49,8 @@ export const CASES: Case[] = [
   {
     id: 'vmo2',
     company: 'Virgin Media O2',
-    role: 'Senior Delivery Lead — via Open Reply',
+    role: 'Senior Manager',
+    employer: 'Open Reply',
     dates: '2023 — 2025',
     location: 'London, UK',
     sector: 'Telecoms',
