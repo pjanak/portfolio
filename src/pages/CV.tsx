@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import vmo2Logo from '@/assets/logos/vmo2-dark.svg'
 import bbcLogo from '@/assets/logos/bbc.svg'
 import tescoLogo from '@/assets/logos/tesco.svg'
-import johnLewisLogo from '@/assets/logos/john-lewis.svg'
 import skyLogo from '@/assets/logos/sky.svg'
 import vodafoneLogo from '@/assets/logos/vodafone.svg'
 import theBodyShopLogo from '@/assets/logos/the-body-shop.svg'
@@ -13,36 +12,74 @@ import berryBrosLogo from '@/assets/logos/berry-bros.svg'
 import batLogo from '@/assets/logos/bat.svg'
 import costcoLogo from '@/assets/logos/costco.svg'
 
-const CLIENT_GROUPS = [
+interface ClientEntry { name: string; src: string; achievements: string[] }
+
+const CLIENT_GROUPS: { label: string; clients: ClientEntry[] }[] = [
   {
     label: 'Telecoms & Media',
     clients: [
-      { name: 'Virgin Media O2', src: vmo2Logo },
-      { name: 'Sky',             src: skyLogo },
-      { name: 'Vodafone',        src: vodafoneLogo },
-      { name: 'BBC',             src: bbcLogo },
+      {
+        name: 'Virgin Media O2', src: vmo2Logo,
+        achievements: [
+          'Multi-year transformation programme',
+          '£8m CapEx change portfolio — Scaled Agile, online acquisition',
+          'Delivery authority for regulatory projects (One Touch Switch, Ofcom Price & Promises)',
+        ],
+      },
+      {
+        name: 'Sky', src: skyLogo,
+        achievements: ['Scalable digital architecture'],
+      },
+      {
+        name: 'Vodafone', src: vodafoneLogo,
+        achievements: ['Digital experience and capability enabling IoT marketplace'],
+      },
+      {
+        name: 'BBC', src: bbcLogo,
+        achievements: [
+          'Design and build of BBC Bitesize iOS App — record downloads Q4 2014',
+          'Design and build of BBC Sports',
+        ],
+      },
     ],
   },
   {
     label: 'Retail & eCommerce',
     clients: [
-      { name: 'Tesco',      src: tescoLogo },
-      { name: 'John Lewis', src: johnLewisLogo },
-      { name: 'Costco',     src: costcoLogo },
-      { name: 'Monsoon',    src: monsoonLogo },
+      {
+        name: 'Tesco', src: tescoLogo,
+        achievements: ['Customised Android operating system'],
+      },
+      {
+        name: 'Costco', src: costcoLogo,
+        achievements: ['eCommerce platform implementation'],
+      },
+      {
+        name: 'Monsoon Accessorize', src: monsoonLogo,
+        achievements: ['eCommerce, CRM, Loyalty, CX'],
+      },
     ],
   },
   {
     label: 'Consumer & Lifestyle',
     clients: [
-      { name: 'The Body Shop', src: theBodyShopLogo },
-      { name: 'Berry Bros.',   src: berryBrosLogo },
-      { name: 'BAT',           src: batLogo },
+      {
+        name: 'The Body Shop', src: theBodyShopLogo,
+        achievements: ['eCommerce platform implementation'],
+      },
+      {
+        name: 'Berry Bros. & Rudd', src: berryBrosLogo,
+        achievements: ['IT transformation', 'eCommerce platform', 'ePOS'],
+      },
+      {
+        name: 'BAT', src: batLogo,
+        achievements: ['Mobile-optimised eCommerce experience'],
+      },
     ],
   },
 ]
 
-function ClientLogo({ name, src, index }: { name: string; src: string; index: number }) {
+function ClientRow({ name, src, achievements, index }: ClientEntry & { index: number }) {
   const ref = useRef<HTMLLIElement>(null)
   const [visible, setVisible] = useState(false)
 
@@ -51,7 +88,7 @@ function ClientLogo({ name, src, index }: { name: string; src: string; index: nu
     if (!el) return
     const io = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setVisible(true); io.unobserve(el) } },
-      { threshold: 0.1, rootMargin: '0px 0px -32px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -24px 0px' }
     )
     io.observe(el)
     return () => io.disconnect()
@@ -60,10 +97,15 @@ function ClientLogo({ name, src, index }: { name: string; src: string; index: nu
   return (
     <li
       ref={ref}
-      className={`client-logo-item ${visible ? 'client-logo-in' : 'client-logo-out'}`}
-      style={{ '--logo-delay': `${index * 55}ms` } as React.CSSProperties}
+      className={`client-row ${visible ? 'client-logo-in' : 'client-logo-out'}`}
+      style={{ '--logo-delay': `${index * 50}ms` } as React.CSSProperties}
     >
-      <img src={src} alt={name} />
+      <div className="client-row-logo">
+        <img src={src} alt={name} />
+      </div>
+      <ul className="client-row-achievements">
+        {achievements.map((a, i) => <li key={i}>{a}</li>)}
+      </ul>
     </li>
   )
 }
@@ -229,9 +271,9 @@ export default function CV() {
                 return (
                   <div key={group.label} className="client-group">
                     <p className="client-group-label">{group.label}</p>
-                    <ul className="client-logo-grid">
+                    <ul className="client-row-list">
                       {group.clients.map((c, ci) => (
-                        <ClientLogo key={c.name} name={c.name} src={c.src} index={offset + ci} />
+                        <ClientRow key={c.name} {...c} index={offset + ci} />
                       ))}
                     </ul>
                   </div>

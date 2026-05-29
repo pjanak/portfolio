@@ -606,11 +606,11 @@
   /* CV page */
   .cv-role { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 32px 0; border-top: 1px solid var(--border-2); }
 
-  /* Client logo groups */
+  /* Client engagement section */
   .client-groups {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 36px;
   }
   .client-group-label {
     font-family: var(--font-mono);
@@ -619,55 +619,90 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--fg-4);
-    margin: 0 0 12px;
+    margin: 0 0 10px;
   }
-  .client-logo-grid {
+  .client-row-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: stretch;
+    flex-direction: column;
+    gap: 6px;
   }
-  .client-logo-item {
-    display: flex;
+  .client-row {
+    display: grid;
+    grid-template-columns: 196px 1fr;
     align-items: center;
-    justify-content: center;
-    padding: 20px 28px;
+    gap: 0;
     border: 1px solid var(--border-2);
     border-radius: 4px;
     background: var(--bg-panel);
-    min-width: 120px;
+    overflow: hidden;
     transition: border-color 220ms var(--ease), background-color 220ms var(--ease);
   }
-  .client-logo-item:hover {
+  .client-row:hover {
     border-color: var(--border-3);
     background: var(--bg-elev);
   }
-  .client-logo-item img {
-    height: 40px;
+  .client-row-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 24px;
+    border-right: 1px solid var(--border-2);
+    align-self: stretch;
+    transition: border-color 220ms var(--ease);
+  }
+  .client-row:hover .client-row-logo {
+    border-color: var(--border-3);
+  }
+  .client-row-logo img {
+    height: 36px;
     width: auto;
     max-width: 140px;
     object-fit: contain;
     display: block;
-    filter: brightness(0.8);
+    filter: brightness(0.75);
     transition: filter 220ms var(--ease);
   }
-  .client-logo-item:hover img {
+  .client-row:hover .client-row-logo img {
     filter: brightness(1);
   }
+  .client-row-achievements {
+    list-style: none;
+    padding: 16px 24px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .client-row-achievements li {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--fg-3);
+    padding-left: 16px;
+    position: relative;
+  }
+  .client-row-achievements li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+    line-height: 1.55;
+  }
 
-  /* Hidden state */
-  .client-logo-out { opacity: 0; transform: translateY(12px); }
+  /* Scroll-reveal states */
+  .client-logo-out { opacity: 0; transform: translateY(10px); }
 
   @media (prefers-reduced-motion: no-preference) {
     @keyframes client-logo-rise {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     .client-logo-in {
-      animation: client-logo-rise 360ms var(--ease-out) var(--logo-delay, 0ms) both;
+      animation: client-logo-rise 340ms var(--ease-out) var(--logo-delay, 0ms) both;
     }
   }
   @media (prefers-reduced-motion: reduce) {
