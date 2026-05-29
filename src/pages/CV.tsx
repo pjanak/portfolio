@@ -13,18 +13,33 @@ import berryBrosLogo from '@/assets/logos/berry-bros.svg'
 import batLogo from '@/assets/logos/bat.svg'
 import costcoLogo from '@/assets/logos/costco.svg'
 
-const CLIENTS = [
-  { name: 'Virgin Media O2', src: vmo2Logo },
-  { name: 'BBC',             src: bbcLogo },
-  { name: 'Tesco',           src: tescoLogo },
-  { name: 'John Lewis',      src: johnLewisLogo },
-  { name: 'Sky',             src: skyLogo },
-  { name: 'Vodafone',        src: vodafoneLogo },
-  { name: 'The Body Shop',   src: theBodyShopLogo },
-  { name: 'Monsoon',         src: monsoonLogo },
-  { name: 'Berry Bros.',     src: berryBrosLogo },
-  { name: 'BAT',             src: batLogo },
-  { name: 'Costco',          src: costcoLogo },
+const CLIENT_GROUPS = [
+  {
+    label: 'Telecoms & Media',
+    clients: [
+      { name: 'Virgin Media O2', src: vmo2Logo },
+      { name: 'Sky',             src: skyLogo },
+      { name: 'Vodafone',        src: vodafoneLogo },
+      { name: 'BBC',             src: bbcLogo },
+    ],
+  },
+  {
+    label: 'Retail & eCommerce',
+    clients: [
+      { name: 'Tesco',      src: tescoLogo },
+      { name: 'John Lewis', src: johnLewisLogo },
+      { name: 'Costco',     src: costcoLogo },
+      { name: 'Monsoon',    src: monsoonLogo },
+    ],
+  },
+  {
+    label: 'Consumer & Lifestyle',
+    clients: [
+      { name: 'The Body Shop', src: theBodyShopLogo },
+      { name: 'Berry Bros.',   src: berryBrosLogo },
+      { name: 'BAT',           src: batLogo },
+    ],
+  },
 ]
 
 function ClientLogo({ name, src, index }: { name: string; src: string; index: number }) {
@@ -204,15 +219,25 @@ export default function CV() {
           </div>
 
           {/* Client logos */}
-          <div style={{ marginTop: 64, padding: '28px 32px', background: 'var(--bg-soft)', border: '1px solid var(--border-2)', borderRadius: 4 }}>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 24px' }}>
+          <div style={{ marginTop: 64, padding: '32px 36px', background: 'var(--bg-soft)', border: '1px solid var(--border-2)', borderRadius: 4 }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 32px' }}>
               // Client engagements
             </p>
-            <ul className="client-logo-grid">
-              {CLIENTS.map((c, i) => (
-                <ClientLogo key={c.name} name={c.name} src={c.src} index={i} />
-              ))}
-            </ul>
+            <div className="client-groups">
+              {CLIENT_GROUPS.map((group, gi) => {
+                const offset = CLIENT_GROUPS.slice(0, gi).reduce((n, g) => n + g.clients.length, 0)
+                return (
+                  <div key={group.label} className="client-group">
+                    <p className="client-group-label">{group.label}</p>
+                    <ul className="client-logo-grid">
+                      {group.clients.map((c, ci) => (
+                        <ClientLogo key={c.name} name={c.name} src={c.src} index={offset + ci} />
+                      ))}
+                    </ul>
+                  </div>
+                )
+              })}
+            </div>
           </div>
 
           <div style={{ marginTop: 48, display: 'flex', gap: 12, flexWrap: 'wrap' }}>

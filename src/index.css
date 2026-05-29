@@ -606,24 +606,39 @@
   /* CV page */
   .cv-role { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 32px 0; border-top: 1px solid var(--border-2); }
 
-  /* Client logo grid */
+  /* Client logo groups */
+  .client-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .client-group-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-4);
+    margin: 0 0 12px;
+  }
   .client-logo-grid {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
+    gap: 10px;
+    align-items: stretch;
   }
   .client-logo-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 14px 20px;
+    padding: 20px 28px;
     border: 1px solid var(--border-2);
     border-radius: 4px;
     background: var(--bg-panel);
+    min-width: 120px;
     transition: border-color 220ms var(--ease), background-color 220ms var(--ease);
   }
   .client-logo-item:hover {
@@ -631,12 +646,12 @@
     background: var(--bg-elev);
   }
   .client-logo-item img {
-    height: 28px;
+    height: 40px;
     width: auto;
-    max-width: 110px;
+    max-width: 140px;
     object-fit: contain;
     display: block;
-    filter: brightness(0.75);
+    filter: brightness(0.8);
     transition: filter 220ms var(--ease);
   }
   .client-logo-item:hover img {
