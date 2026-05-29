@@ -1,5 +1,57 @@
+import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
+import vmo2Logo from '@/assets/logos/vmo2-dark.svg'
+import bbcLogo from '@/assets/logos/bbc.svg'
+import tescoLogo from '@/assets/logos/tesco.svg'
+import johnLewisLogo from '@/assets/logos/john-lewis.svg'
+import skyLogo from '@/assets/logos/sky.svg'
+import vodafoneLogo from '@/assets/logos/vodafone.svg'
+import theBodyShopLogo from '@/assets/logos/the-body-shop.svg'
+import monsoonLogo from '@/assets/logos/monsoon.svg'
+import berryBrosLogo from '@/assets/logos/berry-bros.svg'
+import batLogo from '@/assets/logos/bat.svg'
+import costcoLogo from '@/assets/logos/costco.svg'
+
+const CLIENTS = [
+  { name: 'Virgin Media O2', src: vmo2Logo },
+  { name: 'BBC',             src: bbcLogo },
+  { name: 'Tesco',           src: tescoLogo },
+  { name: 'John Lewis',      src: johnLewisLogo },
+  { name: 'Sky',             src: skyLogo },
+  { name: 'Vodafone',        src: vodafoneLogo },
+  { name: 'The Body Shop',   src: theBodyShopLogo },
+  { name: 'Monsoon',         src: monsoonLogo },
+  { name: 'Berry Bros.',     src: berryBrosLogo },
+  { name: 'BAT',             src: batLogo },
+  { name: 'Costco',          src: costcoLogo },
+]
+
+function ClientLogo({ name, src, index }: { name: string; src: string; index: number }) {
+  const ref = useRef<HTMLLIElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); io.unobserve(el) } },
+      { threshold: 0.1, rootMargin: '0px 0px -32px 0px' }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <li
+      ref={ref}
+      className={`client-logo-item ${visible ? 'client-logo-in' : 'client-logo-out'}`}
+      style={{ '--logo-delay': `${index * 55}ms` } as React.CSSProperties}
+    >
+      <img src={src} alt={name} />
+    </li>
+  )
+}
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -151,14 +203,16 @@ export default function CV() {
             </div>
           </div>
 
-          {/* Client list */}
+          {/* Client logos */}
           <div style={{ marginTop: 64, padding: '28px 32px', background: 'var(--bg-soft)', border: '1px solid var(--border-2)', borderRadius: 4 }}>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 12px' }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 24px' }}>
               // Client engagements
             </p>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 14, lineHeight: 1.7, color: 'var(--fg-2)', margin: 0 }}>
-              Virgin Media O2 · BBC · Tesco · John Lewis · Sky · The Body Shop · Vodafone · Monsoon Accessorize · Berry Bros. &amp; Rudd · British American Tobacco · Costco Wholesale
-            </p>
+            <ul className="client-logo-grid">
+              {CLIENTS.map((c, i) => (
+                <ClientLogo key={c.name} name={c.name} src={c.src} index={i} />
+              ))}
+            </ul>
           </div>
 
           <div style={{ marginTop: 48, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
