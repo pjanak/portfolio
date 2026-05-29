@@ -659,11 +659,11 @@
 
   /* Logo area — fixed height so all logos sit at same visual level */
   .client-card-logo {
-    height: 76px;
+    height: 96px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 20px;
+    padding: 0 24px;
     background: var(--bg-elev);
     border-bottom: 1px solid var(--border);
     transition: background-color 200ms var(--ease);
@@ -672,12 +672,12 @@
     background: #212121;
   }
   .client-card-logo img {
-    height: 30px;
+    height: 44px;
     width: auto;
-    max-width: 140px;
+    max-width: 160px;
     object-fit: contain;
     display: block;
-    filter: brightness(0.72);
+    filter: brightness(0.78);
     transition: filter 200ms var(--ease);
   }
   .client-card:hover .client-card-logo img {
