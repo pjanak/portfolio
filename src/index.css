@@ -610,83 +610,118 @@
   .client-groups {
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 40px;
   }
+
+  /* Category label with extending rule */
   .client-group-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--fg-4);
-    margin: 0 0 10px;
+    margin: 0 0 16px;
+    white-space: nowrap;
   }
-  .client-row-list {
+  .client-group-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-2);
+  }
+
+  /* Card grid */
+  .client-card-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+
+  /* Individual card */
+  .client-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-panel);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: background-color 200ms var(--ease);
+  }
+  .client-card:hover {
+    background: var(--bg-elev);
+  }
+
+  /* Logo area — fixed height so all logos sit at same visual level */
+  .client-card-logo {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    background: var(--bg-elev);
+    border-bottom: 1px solid var(--border);
+    transition: background-color 200ms var(--ease);
+  }
+  .client-card:hover .client-card-logo {
+    background: #212121;
+  }
+  .client-card-logo img {
+    height: 30px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    display: block;
+    filter: brightness(0.72);
+    transition: filter 200ms var(--ease);
+  }
+  .client-card:hover .client-card-logo img {
+    filter: brightness(1);
+  }
+
+  /* Text body */
+  .client-card-body {
+    padding: 14px 16px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .client-card-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--fg-2);
+    margin: 0;
+  }
+  .client-card-achievements {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-  }
-  .client-row {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    align-items: stretch;
-    gap: 0;
-    border-top: 1px solid var(--border);
-    transition: background-color 180ms var(--ease);
-  }
-  .client-row:last-child {
-    border-bottom: 1px solid var(--border);
-  }
-  .client-row:hover {
-    background: var(--bg-panel);
-  }
-  .client-row-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* fixed-height container so every logo sits at the same visual level */
-    height: 72px;
-    padding: 0 24px;
-  }
-  .client-row-logo img {
-    height: 32px;
-    width: auto;
-    max-width: 148px;
-    object-fit: contain;
-    display: block;
-    filter: brightness(0.7);
-    transition: filter 220ms var(--ease);
-  }
-  .client-row:hover .client-row-logo img {
-    filter: brightness(1);
-  }
-  .client-row-achievements {
-    list-style: none;
-    padding: 18px 0 18px 24px;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     gap: 5px;
-    border-left: 1px solid var(--border);
   }
-  .client-row-achievements li {
+  .client-card-achievements li {
     font-family: var(--font-mono);
-    font-size: 12px;
-    line-height: 1.55;
-    color: var(--fg-3);
-    padding-left: 16px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--fg-4);
+    padding-left: 14px;
     position: relative;
   }
-  .client-row-achievements li::before {
+  .client-card-achievements li::before {
     content: '—';
     position: absolute;
     left: 0;
     color: var(--accent);
-    font-size: 11px;
-    line-height: 1.55;
+    line-height: 1.5;
   }
 
   /* Scroll-reveal states */

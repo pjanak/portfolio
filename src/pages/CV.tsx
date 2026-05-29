@@ -79,7 +79,7 @@ const CLIENT_GROUPS: { label: string; clients: ClientEntry[] }[] = [
   },
 ]
 
-function ClientRow({ name, src, achievements, index }: ClientEntry & { index: number }) {
+function ClientCard({ name, src, achievements, index }: ClientEntry & { index: number }) {
   const ref = useRef<HTMLLIElement>(null)
   const [visible, setVisible] = useState(false)
 
@@ -97,15 +97,18 @@ function ClientRow({ name, src, achievements, index }: ClientEntry & { index: nu
   return (
     <li
       ref={ref}
-      className={`client-row ${visible ? 'client-logo-in' : 'client-logo-out'}`}
-      style={{ '--logo-delay': `${index * 50}ms` } as React.CSSProperties}
+      className={`client-card ${visible ? 'client-logo-in' : 'client-logo-out'}`}
+      style={{ '--logo-delay': `${index * 45}ms` } as React.CSSProperties}
     >
-      <div className="client-row-logo">
+      <div className="client-card-logo">
         <img src={src} alt={name} />
       </div>
-      <ul className="client-row-achievements">
-        {achievements.map((a, i) => <li key={i}>{a}</li>)}
-      </ul>
+      <div className="client-card-body">
+        <p className="client-card-name">{name}</p>
+        <ul className="client-card-achievements">
+          {achievements.map((a, i) => <li key={i}>{a}</li>)}
+        </ul>
+      </div>
     </li>
   )
 }
@@ -260,9 +263,9 @@ export default function CV() {
             </div>
           </div>
 
-          {/* Client logos */}
-          <div style={{ marginTop: 64, padding: '32px 36px', background: 'var(--bg-soft)', border: '1px solid var(--border-2)', borderRadius: 4 }}>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 32px' }}>
+          {/* Client engagements */}
+          <div style={{ marginTop: 64 }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: 'var(--accent)', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 36px' }}>
               // Client engagements
             </p>
             <div className="client-groups">
@@ -271,9 +274,9 @@ export default function CV() {
                 return (
                   <div key={group.label} className="client-group">
                     <p className="client-group-label">{group.label}</p>
-                    <ul className="client-row-list">
+                    <ul className="client-card-grid">
                       {group.clients.map((c, ci) => (
-                        <ClientRow key={c.name} {...c} index={offset + ci} />
+                        <ClientCard key={c.name} {...c} index={offset + ci} />
                       ))}
                     </ul>
                   </div>
