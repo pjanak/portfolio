@@ -627,42 +627,36 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
   }
   .client-row {
     display: grid;
-    grid-template-columns: 196px 1fr;
-    align-items: center;
+    grid-template-columns: 200px 1fr;
+    align-items: stretch;
     gap: 0;
-    border: 1px solid var(--border-2);
-    border-radius: 4px;
-    background: var(--bg-panel);
-    overflow: hidden;
-    transition: border-color 220ms var(--ease), background-color 220ms var(--ease);
+    border-top: 1px solid var(--border);
+    transition: background-color 180ms var(--ease);
+  }
+  .client-row:last-child {
+    border-bottom: 1px solid var(--border);
   }
   .client-row:hover {
-    border-color: var(--border-3);
-    background: var(--bg-elev);
+    background: var(--bg-panel);
   }
   .client-row-logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 24px;
-    border-right: 1px solid var(--border-2);
-    align-self: stretch;
-    transition: border-color 220ms var(--ease);
-  }
-  .client-row:hover .client-row-logo {
-    border-color: var(--border-3);
+    /* fixed-height container so every logo sits at the same visual level */
+    height: 72px;
+    padding: 0 24px;
   }
   .client-row-logo img {
-    height: 36px;
+    height: 32px;
     width: auto;
-    max-width: 140px;
+    max-width: 148px;
     object-fit: contain;
     display: block;
-    filter: brightness(0.75);
+    filter: brightness(0.7);
     transition: filter 220ms var(--ease);
   }
   .client-row:hover .client-row-logo img {
@@ -670,11 +664,13 @@
   }
   .client-row-achievements {
     list-style: none;
-    padding: 16px 24px;
+    padding: 18px 0 18px 24px;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    justify-content: center;
+    gap: 5px;
+    border-left: 1px solid var(--border);
   }
   .client-row-achievements li {
     font-family: var(--font-mono);
